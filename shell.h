@@ -173,14 +173,14 @@ int print_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
 
-/* toem_builtin.c */
-int _myexit(info_t *);
-int _mycd(info_t *);
-int _myhelp(info_t *);
+/* our builtin file */
+int exeat(info_t *);
+int compact(info_t *);
+int assist(info_t *);
 
-/* toem_builtin1.c */
-int _myhistory(info_t *);
-int _myalias(info_t *);
+/* our builtin1 file */
+int history(info_t *);
+int alliance(info_t *);
 
 /*toem_getline.c */
 ssize_t get_input(info_t *);
