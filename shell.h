@@ -12,7 +12,7 @@
 #include <fcntl.h>
 #include <errno.h>
 
-/* for read/write buffers */
+/* this is for the buffer mode sampling */
 #define READ_BUF_SIZE 1024
 #define WRITE_BUF_SIZE 1024
 #define BUF_FLUSH -1
@@ -48,7 +48,7 @@ typedef struct liststr
         int num;
         char *str;
         struct liststr *next;
-} list_t;
+} state;
 
 /**
  *struct passinfo - contains pseudo-arguements to pass into a function,
@@ -93,7 +93,7 @@ typedef struct passinfo
         int cmd_buf_type; /* CMD_type ||, &&, ; */
         int readfd;
         int histcount;
-} info_t;
+} intro;
 
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
@@ -108,28 +108,29 @@ typedef struct builtin
 {
         char *type;
         int (*func)(info_t *);
-} builtin_table;
+} sketch;
 
 
-/* toem_shloop.c */
-int hsh(info_t *, char **);
-int find_builtin(info_t *);
-void find_cmd(info_t *);
-void fork_cmd(info_t *);
+/* for our shell_loop.c */
+int hash(info_t *, char **);
+int builtfind(info_t *);
+void commandfind(info_t *);
+void commandfork(info_t *);
 
-/* toem_parser.c */
-int is_cmd(info_t *, char *);
-char *dup_chars(char *, int, int);
-char *find_path(info_t *, char *, char *);
+/* this is our parser.c file */
+int command(info_t *, char *);
+char *duplicate(char *, int, int);
+char *pathfinder(info_t *, char *, char *);
+
 
 /* loophsh.c */
 int loophsh(char **);
 
-/* toem_errors.c */
-void _eputs(char *);
-int _eputchar(char);
-int _putfd(char c, int fd);
-int _putsfd(char *str, int fd);
+/* for our errors.c file */
+void lorry(char *);
+int cluster(char);
+int master(char lap, int fall);
+int fellow(char *stranger, int fall);
 
 /* toem_string.c */
 int _strlen(char *);
@@ -137,16 +138,16 @@ int _strcmp(char *, char *);
 char *starts_with(const char *, const char *);
 char *_strcat(char *, char *);
 
-/* toem_string1.c */
-char *_strcpy(char *, char *);
-char *_strdup(const char *);
-void _puts(char *);
-int _putchar(char);
+/* our string1.c file */
+char *stringCopy(char *, char *);
+char *stringDupe(const char *);
+void putString(char *);
+int putCharacter(char);
 
-/* toem_exits.c */
-char *_strncpy(char *, char *, int);
-char *_strncat(char *, char *, int);
-char *_strchr(char *, char);
+/* for our exit.c file */
+char *stringToCopy(char *, char *, int);
+char *stringConcat(char *, char *, int);
+char *capum(char *, char);
 
 /* toem_tokenizer.c */
 char **strtow(char *, char *);
@@ -181,6 +182,9 @@ int assist(info_t *);
 /* our builtin1 file */
 int history(info_t *);
 int alliance(info_t *);
+int seller(info_t *, char *);
+int buyer(info_t *, char *);
+int printer(list_t *);
 
 /*toem_getline.c */
 ssize_t get_input(info_t *);
@@ -199,17 +203,17 @@ int _mysetenv(info_t *);
 int _myunsetenv(info_t *);
 int populate_env_list(info_t *);
 
-/* toem_getenv.c */
-char **get_environ(info_t *);
-int _unsetenv(info_t *, char *);
-int _setenv(info_t *, char *, char *);
+/* for our getenv.c file */
+char **environmental(info_t *);
+int seventy(info_t *, char *);
+int unseventy(info_t *, char *, char *);
 
-/* toem_history.c */
-char *get_history_file(info_t *info);
-int write_history(info_t *info);
-int read_history(info_t *info);
-int build_history_list(info_t *info, char *buf, int linecount);
-int renumber_history(info_t *info);
+/* for our history.c file */
+char *part(info_t *vine);
+int writer(info_t *vine);
+int reader(info_t *vine);
+int builder(info_t *vine, char *bale, int counter);
+int number(info_t *vine);
 
 /* toem_lists.c */
 list_t *add_node(list_t **, const char *, int);
@@ -218,18 +222,18 @@ size_t print_list_str(const list_t *);
 int delete_node_at_index(list_t **, unsigned int);
 void free_list(list_t **);
 
-/* toem_lists1.c */
-size_t list_len(const list_t *);
-char **list_to_strings(list_t *);
-size_t print_list(const list_t *);
-list_t *node_starts_with(list_t *, char *, char);
-ssize_t get_node_index(list_t *, list_t *);
+/* for our lists1.c file */
+size_t lucky(const list_t *);
+char **stringList(list_t *);
+size_t pointToList(const list_t *);
+list_t *nodeStart(list_t *, char *, char);
+ssize_t nodeIndex(list_t *, list_t *);
 
-/* toem_vars.c */
-int is_chain(info_t *, char *, size_t *);
-void check_chain(info_t *, char *, size_t *, size_t, size_t);
-int replace_alias(info_t *);
-int replace_vars(info_t *);
-int replace_string(char **, char *);
+/* this is for our vars.c file */
+int chain(info_t *, char *, size_t *);
+void check(info_t *, char *, size_t *, size_t, size_t);
+int alliancerep(info_t *);
+int variancerep(info_t *);
+int stringrep(char **, char *);
 
 #endif

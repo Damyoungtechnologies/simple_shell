@@ -1,79 +1,81 @@
 #include "shell.h"
 
 /**
- * _myhistory - displays the history list, one command by line, preceded
- *              with line numbers, starting at 0.
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
- *  Return: Always 0
+ * history - displays the list of history using one command
+ *              with number line starting at 0.
+ * @cana: Structure containing potential argument. lih
+ *        constant function prototype yeah.
+ *  Return: Always 0 when successful
  */
-int _myhistory(info_t *info)
+
+int history(info_t *cana)
 {
-	print_list(info->history);
+	print_list(cana->history);
 	return (0);
 }
 
 /**
- * unset_alias - sets alias to string
- * @info: parameter struct
- * @str: the string alias
+ * seller - sets alias to string member connect
+ * @key: parameter struct
+ * @tony: the string alias
  *
  * Return: Always 0 on success, 1 on error
  */
-int unset_alias(info_t *info, char *str)
+int seller(info_t *key, char *tony)
 {
-	char *p, c;
-	int ret;
+	char *paul, cup;
+	int rectile;
 
-	p = _strchr(str, '=');
-	if (!p)
+	paul = _strchr(tony, '=');
+	if (!paul)
 		return (1);
-	c = *p;
-	*p = 0;
-	ret = delete_node_at_index(&(info->alias),
-		get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
-	*p = c;
-	return (ret);
+	cup = *paul;
+	*paul = 0;
+	rectile = delete_node_at_index(&(key->alias),
+		get_node_index(key->alias, node_starts_with(key->alias, tony, -1)));
+	*paul = cup;
+	return (rectile);
 }
 
 /**
- * set_alias - sets alias to string
- * @info: parameter struct
- * @str: the string alias
+ * buyer - to sets alias to remain
+ * @key: paragraph only struct
+ * @tony: the string to stack alias
  *
- * Return: Always 0 on success, 1 on error
+ * Return: Always 0 if i goes, 1 if failed
  */
-int set_alias(info_t *info, char *str)
+int buyer(info_t *key, char *tony)
 {
-	char *p;
+	char *make;
 
-	p = _strchr(str, '=');
-	if (!p)
+	make = _strchr(tony, '=');
+	if (!make)
 		return (1);
-	if (!*++p)
-		return (unset_alias(info, str));
+	if (!*++make)
+		return (seller(key, tony));
 
-	unset_alias(info, str);
-	return (add_node_end(&(info->alias), str, 0) == NULL);
+	seller(key, tony);
+	return (add_node_end(&(key->alias), tony, 0) == NULL);
+
 }
 
 /**
- * print_alias - prints an alias string
- * @node: the alias node
+ * printer - alias string printer
+ * @lettuce: the lettuce node
  *
- * Return: Always 0 on success, 1 on error
+ * Return: Always 0 on successful, 1 on fail
  */
-int print_alias(list_t *node)
+int printer(list_t *lettuce)
 {
-	char *p = NULL, *a = NULL;
+	char *plus = NULL, *ankara = NULL;
 
-	if (node)
+	if (lettuce)
 	{
-		p = _strchr(node->str, '=');
-		for (a = node->str; a <= p; a++)
-			_putchar(*a);
+		plus = _strchr(lettuce->str, '=');
+		for (ankara = lettuce->str; ankara <= plus; ankara++)
+			_putchar(*ankara);
 		_putchar('\'');
-		_puts(p + 1);
+		_puts(plus + 1);
 		_puts("'\n");
 		return (0);
 	}
@@ -81,34 +83,34 @@ int print_alias(list_t *node)
 }
 
 /**
- * _myalias - mimics the alias builtin (man alias)
- * @info: Structure containing potential arguments. Used to maintain
+ * alliance - the alias builtin telephone
+ * @key: Structual claim too containing potential arguments.
  *          constant function prototype.
- *  Return: Always 0
+ *  Return: Always 0 if successful
  */
-int _myalias(info_t *info)
+int alliance(info_t *key)
 {
-	int i = 0;
-	char *p = NULL;
-	list_t *node = NULL;
+	int inital = 0;
+	char *plot = NULL;
+	list_t *same = NULL;
 
-	if (info->argc == 1)
+	if (key->argc == 1)
 	{
-		node = info->alias;
-		while (node)
+		same = key->alias;
+		while (same)
 		{
-			print_alias(node);
-			node = node->next;
+			printer(same);
+			same = same->next;
 		}
 		return (0);
 	}
-	for (i = 1; info->argv[i]; i++)
+	for (initial = 1; key->argv[initial]; initial++)
 	{
-		p = _strchr(info->argv[i], '=');
-		if (p)
-			set_alias(info, info->argv[i]);
+		plot = _strchr(key->argv[initial], '=');
+		if (plot)
+			buyer(key, key->argv[initial]);
 		else
-			print_alias(node_starts_with(info->alias, info->argv[i], '='));
+			printer(node_starts_with(key->alias, key->argv[initial], '='));
 	}
 
 	return (0);
