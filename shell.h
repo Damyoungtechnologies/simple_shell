@@ -132,10 +132,10 @@ int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
 /* toem_string.c */
-int _strlen(char *);
-int _strcmp(char *, char *);
+int stringlen(char *);
+int stringcmp(char *, char *);
 char *starts_with(const char *, const char *);
-char *_strcat(char *, char *);
+char *stringcat(char *, char *);
 
 /* toem_string1.c */
 char *_strcpy(char *, char *);
@@ -153,12 +153,12 @@ char **strtow(char *, char *);
 char **strtow2(char *, char);
 
 /* toem_realloc.c */
-char *_memset(char *, char, unsigned int);
-void ffree(char **);
-void *_realloc(void *, unsigned int, unsigned int);
+char *Memoryset(char *, char, unsigned int);
+void forfree(char **);
+void *reallocation(void *, unsigned int, unsigned int);
 
 /* toem_memory.c */
-int bfree(void **);
+int befree(void **);
 
 /* toem_atoi.c */
 int isInteractive(info_t *);
@@ -216,7 +216,7 @@ list_t *add_node(list_t **, const char *, int);
 list_t *add_node_end(list_t **, const char *, int);
 size_t print_list_str(const list_t *);
 int delete_node_at_index(list_t **, unsigned int);
-void free_list(list_t **);
+void free_l(list_t **);
 
 /* toem_lists1.c */
 size_t list_len(const list_t *);
@@ -226,10 +226,10 @@ list_t *node_starts_with(list_t *, char *, char);
 ssize_t get_node_index(list_t *, list_t *);
 
 /* toem_vars.c */
-int is_chain(info_t *, char *, size_t *);
+int ischaindelim(info_t *, char *, size_t *);
 void check_chain(info_t *, char *, size_t *, size_t, size_t);
-int replace_alias(info_t *);
-int replace_vars(info_t *);
-int replace_string(char **, char *);
+int rep_alias(info_t *);
+int rep_vars(info_t *);
+int rep_string(char **, char *);
 
 #endif
