@@ -169,9 +169,9 @@ int stringToInteger(char *);
 /* toem_errors1.c */
 int _erratoi(char *);
 void print_error(info_t *, char *);
-int print_d(int, int);
-char *convert_number(long int, int, int);
-void remove_comments(char *);
+int print_dec(int, int);
+char *conv_number(long int, int, int);
+void rem_comments(char *);
 
 /* our builtin file */
 int exeat(info_t *);
@@ -193,11 +193,11 @@ void set_info(info_t *, char **);
 void free_info(info_t *, int);
 
 /* toem_environ.c */
-char *_getenv(info_t *, const char *);
-int _myenv(info_t *);
-int _mysetenv(info_t *);
-int _myunsetenv(info_t *);
-int populate_env_list(info_t *);
+char *_getenviron(info_t *, const char *);
+int myenviron(info_t *);
+int mysetenviron(info_t *);
+int myunsetenv(info_t *);
+int pop_environ_list(info_t *);
 
 /* toem_getenv.c */
 char **get_environ(info_t *);
